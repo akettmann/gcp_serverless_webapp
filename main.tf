@@ -21,3 +21,8 @@ resource "random_string" "name" {
 locals {
   name = coalesce(var.deployment_name, random_string.name.result)
 }
+
+resource "google_cloud_run_service" "app" {
+  location = ""
+  name     = ""
+}
