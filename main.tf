@@ -17,13 +17,7 @@ resource "random_string" "name" {
   numeric = true
   special = false
 }
-variable "deployment_name" {
-  default = null
-  description = "Unique, short identifying string "
-}
+
 locals {
   name = coalesce(var.deployment_name, random_string.name.result)
-}
-resource "google_service_account" "app" {
-  account_id = join("-", [local.name, "app"])
 }
