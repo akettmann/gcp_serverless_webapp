@@ -37,6 +37,7 @@ No modules.
 | <a name="input_deployment_name"></a> [deployment\_name](#input\_deployment\_name) | Unique, short identifying string used to identify components of this terraform, defaults to a randomly generates six (6) character string | `any` | `null` | no |
 | <a name="input_environment_variables"></a> [environment\_variables](#input\_environment\_variables) | Environment variables to present to the application | `map(string)` | `{}` | no |
 | <a name="input_image_name"></a> [image\_name](#input\_image\_name) | container image the service should use | `string` | `"us-docker.pkg.dev/cloudrun/container/hello"` | no |
+| <a name="input_labels"></a> [labels](#input\_labels) | labels to apply to all infrastructure that supports it | `map(string)` | `{}` | no |
 | <a name="input_memory"></a> [memory](#input\_memory) | Memory Per instance, Kubernetes notation | `string` | `"512M"` | no |
 | <a name="input_region"></a> [region](#input\_region) | Google Cloud region for the service to reside in | `string` | `"us-central1"` | no |
 

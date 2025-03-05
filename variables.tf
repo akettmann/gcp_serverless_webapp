@@ -27,3 +27,8 @@ variable "region" {
   default = "us-central1"
   description = "Google Cloud region for the service to reside in"
 }
+variable labels {
+  type = map(string)
+  default = {}
+  description = "labels to apply to all infrastructure that supports it"
+}
