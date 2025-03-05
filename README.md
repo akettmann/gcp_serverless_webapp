@@ -8,16 +8,13 @@
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-| Name | Version |
-|------|---------|
-| <a name="requirement_google"></a> [google](#requirement\_google) | 6.13.0 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | 3.6.3 |
+No requirements.
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 6.13.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 6.24.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.6.3 |
 
 ## Modules
@@ -28,9 +25,9 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [google_cloud_run_service.app](https://registry.terraform.io/providers/hashicorp/google/6.13.0/docs/resources/cloud_run_service) | resource |
-| [google_service_account.app](https://registry.terraform.io/providers/hashicorp/google/6.13.0/docs/resources/service_account) | resource |
-| [random_string.name](https://registry.terraform.io/providers/hashicorp/random/3.6.3/docs/resources/string) | resource |
+| [google_cloud_run_v2_service.app](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloud_run_v2_service) | resource |
+| [google_service_account.app](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
+| [random_string.name](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
 
 ## Inputs
 

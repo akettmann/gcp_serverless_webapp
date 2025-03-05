@@ -2,11 +2,9 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "6.13.0"
     }
     random = {
       source  = "hashicorp/random"
-      version = "3.6.3"
     }
   }
 }
@@ -22,7 +20,9 @@ locals {
   name = coalesce(var.deployment_name, random_string.name.result)
 }
 
-resource "google_cloud_run_service" "app" {
-  location = ""
-  name     = ""
+resource "google_cloud_run_v2_service" "app" {
+  location = var.region
+  name     = join("-", [local.name, "service"])
+
+
 }
