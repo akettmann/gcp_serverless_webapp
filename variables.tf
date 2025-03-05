@@ -1,4 +1,5 @@
 variable "deployment_name" {
+  type = string
   default = null
   description = "Unique, short identifying string used to identify components of this terraform, defaults to a randomly generates six (6) character string"
 }
