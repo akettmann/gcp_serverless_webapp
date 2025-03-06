@@ -17,7 +17,44 @@ sections:
   hide-all: false # deprecated in v0.13.0, removed in v0.15.0
   show-all: true  # deprecated in v0.13.0, removed in v0.15.0
 
-content: ""
+content: |-
+  {{ .Header }}
+  ## Usage
+  The defaults will provision a publicly available simple webpage container (us-docker.pkg.dev/cloudrun/container/hello), and can be invoked as simple as replacing YOUR-PROJECT-NAME-HERE:
+  ```hcl
+  module "main" {
+  source = "github.com/akettmann/gcp_serverless_webapp"
+  }
+  provider "google" {
+    project = "YOUR-PROJECT-NAME-HERE"
+  }
+  output "url" {
+    value = module.main.cloud_run_url
+  }
+  ```
+  The main settings you are likely to need, with defaults:
+
+  ```hcl
+  module "main" {
+  {{ $allowedNames := (slice "image_name" "entrypoint" "cmd" "port_number" "memory" "cpu") }}
+  {{ range .Inputs }}
+    {{ if has .name $allowedNames }}
+      {{ .name }}
+    {{ end }}
+  {{ end }}
+
+  ```
+  {{ .Requirements }}
+
+  {{ .Providers }}
+
+  {{ .Modules }}
+
+  {{ .Resources }}
+
+  {{ .Inputs }}
+
+  {{ .Outputs }}
 
 output:
   file: ""
