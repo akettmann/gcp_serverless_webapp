@@ -49,7 +49,12 @@ module "main" {
   # Number of simultaneous requests a single container instance can run
   concurrency = 1
 }
+output "url" {
+  value = module.main.cloud_run_url
+}
 ```
+
+Passing the output from the module at module_name.cloud_run_url outwards will give you the URL to access your service.
 ## Requirements
 
 No requirements.
