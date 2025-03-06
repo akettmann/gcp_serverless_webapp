@@ -43,7 +43,7 @@ provider "google" {
   project = "YOUR-PROJECT-NAME-HERE"
 }
 ```
-## Usage
+ ## Usage
 The defaults will provision a publicly available simple webpage container (us-docker.pkg.dev/cloudrun/container/hello), and can be invoked as simple as replacing YOUR-PROJECT-NAME-HERE:
 ```hcl
 module "main" {
@@ -56,7 +56,31 @@ output "url" {
   value = module.main.cloud_run_url
 }
 ```
+The main settings you are likely to want, with defaults:
 
+```hcl
+module "main" {
+  source = "github.com/akettmann/gcp_serverless_webapp"
+  # Environment variables to present to the application
+  environment_variables = null
+  # CPU Per instance in kubernetes `m` units (one-thousandth CPU)
+  cpu = 500
+  # Memory Per instance, Kubernetes notation
+  memory = 512M
+  # container image the service should use
+  image_name = us-docker.pkg.dev/cloudrun/container/hello
+  # Override the entrypoint of the Docker container
+  entrypoint = null
+  # Override the CMD of the Docker container
+  cmd = null
+  # What port the docker container is listening for http requests on
+  port_number = 80
+  # Google Cloud region for the service to reside in
+  region = us-central1
+  # Number of simultaneous requests a single container instance can run
+  concurrency = 1
+}
+```
 ## Requirements
 
 No requirements.
@@ -65,8 +89,8 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 6.24.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.6.3 |
+| <a name="provider_google"></a> [google](#provider\_google) | 6.24.0 |
 
 ## Modules
 
