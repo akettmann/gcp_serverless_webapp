@@ -2,7 +2,7 @@ formatter: "markdown"
 
 version: ""
 
-header-from: main.tf
+header-from: tf_docs_header.md
 footer-from: ""
 
 recursive:

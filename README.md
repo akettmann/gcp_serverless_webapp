@@ -6,6 +6,9 @@
 *
 
 <!-- BEGIN_TF_DOCS -->
+# Purpose
+This is a terraform module for deploying a container to Google Cloud Run
+
 ## Requirements
 
 No requirements.
