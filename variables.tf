@@ -43,6 +43,11 @@ variable "cmd" {
   default = null
   description = "Override the CMD of the Docker container"
 }
+variable "port_number" {
+  type = number
+  default = 80
+  description = "What port the docker container is listening for http requests on"
+}
 variable "region" {
   type = string
   default = "us-central1"
@@ -52,4 +57,20 @@ variable labels {
   type = map(string)
   default = {}
   description = "labels to apply to all created infrastructure that supports it"
+}
+# Scaling
+variable "concurrency" {
+  type = number
+  default = 8
+  description = "Number of simultaneous requests a single container instance can run"
+}
+variable "min_instances" {
+  type = number
+  default = 0
+  description = "Minimum number of instances to scale down to"
+}
+variable "max_instances" {
+  type = number
+  default = 100
+  description = "Maximum number of containers to scale up to"
 }

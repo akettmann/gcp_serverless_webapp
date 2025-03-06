@@ -42,8 +42,12 @@ No modules.
 | <a name="input_image_name"></a> [image\_name](#input\_image\_name) | container image the service should use | `string` | `"us-docker.pkg.dev/cloudrun/container/hello"` | no |
 | <a name="input_entrypoint"></a> [entrypoint](#input\_entrypoint) | Override the entrypoint of the Docker container | `list(string)` | `null` | no |
 | <a name="input_cmd"></a> [cmd](#input\_cmd) | Override the CMD of the Docker container | `list(string)` | `null` | no |
+| <a name="input_port_number"></a> [port\_number](#input\_port\_number) | What port the docker container is listening for http requests on | `number` | `80` | no |
 | <a name="input_region"></a> [region](#input\_region) | Google Cloud region for the service to reside in | `string` | `"us-central1"` | no |
 | <a name="input_labels"></a> [labels](#input\_labels) | labels to apply to all created infrastructure that supports it | `map(string)` | `{}` | no |
+| <a name="input_concurrency"></a> [concurrency](#input\_concurrency) | Number of simultaneous requests a single container instance can run | `number` | `8` | no |
+| <a name="input_min_instances"></a> [min\_instances](#input\_min\_instances) | Minimum number of instances to scale down to | `number` | `0` | no |
+| <a name="input_max_instances"></a> [max\_instances](#input\_max\_instances) | Maximum number of containers to scale up to | `number` | `100` | no |
 
 ## Outputs
 

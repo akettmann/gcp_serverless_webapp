@@ -26,6 +26,10 @@ resource "google_cloud_run_v2_service" "app" {
   labels = var.labels
   template {
     containers {
+      ports {
+        container_port = var.port_number
+        name = "http1"
+      }
       image = var.image_name
       resources {
         limits = {
@@ -45,6 +49,12 @@ resource "google_cloud_run_v2_service" "app" {
           value = env.value
         }
       }
+
     }
+    scaling {
+      max_instance_count = var.max_instances
+      min_instance_count = var.min_instances
+    }
+    max_instance_request_concurrency = var.concurrency
   }
 }
