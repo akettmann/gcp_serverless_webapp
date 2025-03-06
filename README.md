@@ -55,5 +55,5 @@ No modules.
 |------|-------------|
 | <a name="output_cloud_run_url"></a> [cloud\_run\_url](#output\_cloud\_run\_url) | n/a |
 | <a name="output_app_service_account"></a> [app\_service\_account](#output\_app\_service\_account) | n/a |
-| <a name="output_concurrency_limit"></a> [concurrency\_limit](#output\_concurrency\_limit) | n/a |
+| <a name="output_max_requests_per_second"></a> [max\_requests\_per\_second](#output\_max\_requests\_per\_second) | Max instances X Requests Per Instance = Max (Theoretical) requests per second handled |
 <!-- END_TF_DOCS -->
