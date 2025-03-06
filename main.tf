@@ -1,10 +1,10 @@
 terraform {
   required_providers {
     google = {
-      source  = "hashicorp/google"
+      source = "hashicorp/google"
     }
     random = {
-      source  = "hashicorp/random"
+      source = "hashicorp/random"
     }
   }
 }
@@ -23,17 +23,17 @@ locals {
 resource "google_cloud_run_v2_service" "app" {
   location = var.region
   name     = join("-", [local.name, "service"])
-  labels = var.labels
+  labels   = var.labels
   template {
     containers {
       ports {
         container_port = var.port_number
-        name = "http1"
+        name           = "http1"
       }
       image = var.image_name
       resources {
         limits = {
-          cpu    = var.cpu
+          cpu    = "${var.cpu}m"
           memory = var.memory
         }
         startup_cpu_boost = var.startup_cpu_boost
@@ -56,5 +56,11 @@ resource "google_cloud_run_v2_service" "app" {
       min_instance_count = var.min_instances
     }
     max_instance_request_concurrency = var.concurrency
+  }
+  lifecycle {
+    precondition {
+      condition     = !((var.concurrency > 1) && (var.cpu < 1000))
+      error_message = "Invalid value specified for cpu. Total cpu < 1000m is not supported with concurrency > 1"
+    }
   }
 }
