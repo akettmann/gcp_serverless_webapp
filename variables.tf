@@ -74,3 +74,8 @@ variable "max_instances" {
   default     = 100
   description = "Maximum number of containers to scale up to"
 }
+variable "publicly_visible" {
+  type        = bool
+  default     = true
+  description = "Allow anyone to visit the service, if disabled, requires authorization headers. Ref: https://cloud.google.com/run/docs/authenticating/overview"
+}

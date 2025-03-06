@@ -64,3 +64,11 @@ resource "google_cloud_run_v2_service" "app" {
     }
   }
 }
+
+resource "google_cloud_run_v2_service_iam_member" "public_access" {
+  count    = var.publicly_visible ? 1 : 0
+  member   = "allUsers"
+  name     = google_cloud_run_v2_service.app.name
+  role     = "roles/run.invoker"
+  location = google_cloud_run_v2_service.app.location
+}

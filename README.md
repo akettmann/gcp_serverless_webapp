@@ -1,9 +1,9 @@
+# Google Cloud Run Serverless Terraform Module
+This is a terraform
 
 
-# Pre-commit requirements
-* Golang installed
-* Terraform installed
-*
+
+
 
 <!-- BEGIN_TF_DOCS -->
 # Purpose
@@ -17,8 +17,8 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 6.24.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.6.3 |
+| <a name="provider_google"></a> [google](#provider\_google) | 6.24.0 |
 
 ## Modules
 
@@ -29,6 +29,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [google_cloud_run_v2_service.app](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloud_run_v2_service) | resource |
+| [google_cloud_run_v2_service_iam_member.public_access](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloud_run_v2_service_iam_member) | resource |
 | [google_project_service.project](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_service) | resource |
 | [google_service_account.app](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
 | [random_string.name](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
@@ -52,6 +53,7 @@ No modules.
 | <a name="input_concurrency"></a> [concurrency](#input\_concurrency) | Number of simultaneous requests a single container instance can run | `number` | `1` | no |
 | <a name="input_min_instances"></a> [min\_instances](#input\_min\_instances) | Minimum number of instances to scale down to | `number` | `0` | no |
 | <a name="input_max_instances"></a> [max\_instances](#input\_max\_instances) | Maximum number of containers to scale up to | `number` | `100` | no |
+| <a name="input_publicly_visible"></a> [publicly\_visible](#input\_publicly\_visible) | Allow anyone to visit the service, if disabled, requires authorization headers. Ref: https://cloud.google.com/run/docs/authenticating/overview | `bool` | `true` | no |
 
 ## Outputs
 
