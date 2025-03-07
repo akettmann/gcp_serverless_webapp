@@ -1,3 +1,4 @@
+// terraform-docs-ignore
 resource "google_project_service" "project" {
   for_each = toset(["iam", "run", "cloudresourcemanager"])
   service  = join(".", [each.value, "googleapis.com"])

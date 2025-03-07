@@ -8,6 +8,7 @@ terraform {
     }
   }
 }
+// terraform-docs-ignore
 resource "random_string" "name" {
   length  = 6
   lower   = true
@@ -19,7 +20,6 @@ resource "random_string" "name" {
 locals {
   name = coalesce(var.deployment_name, random_string.name.result)
 }
-
 resource "google_cloud_run_v2_service" "app" {
   location = var.region
   name     = join("-", [local.name, "service"])
@@ -64,7 +64,7 @@ resource "google_cloud_run_v2_service" "app" {
     }
   }
 }
-
+// terraform-docs-ignore
 resource "google_cloud_run_v2_service_iam_member" "public_access" {
   count    = var.publicly_visible ? 1 : 0
   member   = "allUsers"
