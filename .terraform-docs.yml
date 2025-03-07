@@ -41,7 +41,7 @@ content: |-
   {{- range .Module.Inputs }}
     {{- if not (has .Name $skipList) }}
     # {{ .Description }}
-    {{ .Name }} = {{ if and .Default (ne (printf "%v" .Default) "&{}")}}{{ .Default }}{{ else }}null{{ end }}
+    {{ .Name }} = {{ .GetValue }}
     {{- end }}
   {{- end }}
   }
