@@ -48,6 +48,8 @@ module "main" {
   region = "us-central1"
   # Number of simultaneous requests a single container instance can run
   concurrency = 1
+  # Toggles Deletion protection for the google cloud run service.
+  deletion_protection = true
 }
 output "url" {
   value = module.main.cloud_run_url
@@ -61,20 +63,18 @@ No requirements.
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 6.24.0 |
+No providers.
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_enable_apis"></a> [enable\_apis](#module\_enable\_apis) | ./modules/enable_apis | n/a |
+| <a name="module_main"></a> [main](#module\_main) | ./modules/_main | n/a |
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [google_cloud_run_v2_service.app](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloud_run_v2_service) | resource |
-| [google_service_account.app](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
+No resources.
 
 ## Inputs
 
@@ -96,6 +96,7 @@ No modules.
 | <a name="input_min_instances"></a> [min\_instances](#input\_min\_instances) | Minimum number of instances to scale down to | `number` | `0` | no |
 | <a name="input_max_instances"></a> [max\_instances](#input\_max\_instances) | Maximum number of containers to scale up to | `number` | `100` | no |
 | <a name="input_publicly_visible"></a> [publicly\_visible](#input\_publicly\_visible) | Allow anyone to visit the service, if disabled, requires authorization headers. Ref: https://cloud.google.com/run/docs/authenticating/overview | `bool` | `true` | no |
+| <a name="input_deletion_protection"></a> [deletion\_protection](#input\_deletion\_protection) | Toggles Deletion protection for the google cloud run service. | `bool` | `true` | no |
 
 ## Outputs
 

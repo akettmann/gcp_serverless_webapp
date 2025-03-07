@@ -79,3 +79,8 @@ variable "publicly_visible" {
   default     = true
   description = "Allow anyone to visit the service, if disabled, requires authorization headers. Ref: https://cloud.google.com/run/docs/authenticating/overview"
 }
+variable "deletion_protection" {
+  type        = bool
+  default     = true
+  description = "Toggles Deletion protection for the google cloud run service."
+}

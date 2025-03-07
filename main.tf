@@ -20,55 +20,30 @@ resource "random_string" "name" {
 locals {
   name = coalesce(var.deployment_name, random_string.name.result)
 }
-resource "google_cloud_run_v2_service" "app" {
-  location = var.region
-  name     = join("-", [local.name, "service"])
-  labels   = var.labels
-  template {
-    containers {
-      ports {
-        container_port = var.port_number
-        name           = "http1"
-      }
-      image = var.image_name
-      resources {
-        limits = {
-          cpu    = "${var.cpu}m"
-          memory = var.memory
-        }
-        startup_cpu_boost = var.startup_cpu_boost
-        cpu_idle          = var.cpu_only_during_requests
-      }
-      # Used the docker naming externally
-      command = var.entrypoint
-      args    = var.cmd
-      dynamic "env" {
-        for_each = var.environment_variables
-        content {
-          name  = env.key
-          value = env.value
-        }
-      }
 
-    }
-    scaling {
-      max_instance_count = var.max_instances
-      min_instance_count = var.min_instances
-    }
-    max_instance_request_concurrency = var.concurrency
-  }
-  lifecycle {
-    precondition {
-      condition     = !((var.concurrency > 1) && (var.cpu < 1000))
-      error_message = "Invalid value specified for cpu. Total cpu < 1000m is not supported with concurrency > 1"
-    }
-  }
+module "enable_apis" {
+  source = "./modules/enable_apis"
 }
-// terraform-docs-ignore
-resource "google_cloud_run_v2_service_iam_member" "public_access" {
-  count    = var.publicly_visible ? 1 : 0
-  member   = "allUsers"
-  name     = google_cloud_run_v2_service.app.name
-  role     = "roles/run.invoker"
-  location = google_cloud_run_v2_service.app.location
+module "main" {
+  source = "./modules/_main"
+  # There is a ~5 minute time after enabling Google APIs for it to take effect
+  # Using depends on with a `sleep` provider to wait that time
+  depends_on               = [module.enable_apis]
+  deployment_name          = local.name
+  environment_variables    = var.environment_variables
+  cpu                      = var.cpu
+  startup_cpu_boost        = var.startup_cpu_boost
+  cpu_only_during_requests = var.cpu_only_during_requests
+  memory                   = var.memory
+  image_name               = var.image_name
+  entrypoint               = var.entrypoint
+  cmd                      = var.cmd
+  port_number              = var.port_number
+  region                   = var.region
+  labels                   = var.labels
+  concurrency              = var.concurrency
+  min_instances            = var.min_instances
+  max_instances            = var.max_instances
+  publicly_visible         = var.publicly_visible
+  deletion_protection      = var.deletion_protection
 }
