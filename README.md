@@ -31,7 +31,7 @@ The main settings you are likely to want, with defaults:
 module "main" {
   source = "github.com/akettmann/gcp_serverless_webapp"
   # Environment variables to present to the application
-  environment_variables = map[]
+  environment_variables = null
   # CPU Per instance in kubernetes `m` units (one-thousandth CPU)
   cpu = 500
   # Memory Per instance, Kubernetes notation
@@ -39,9 +39,9 @@ module "main" {
   # container image the service should use
   image_name = us-docker.pkg.dev/cloudrun/container/hello
   # Override the entrypoint of the Docker container
-  entrypoint = &{}
+  entrypoint = null
   # Override the CMD of the Docker container
-  cmd = &{}
+  cmd = null
   # What port the docker container is listening for http requests on
   port_number = 80
   # Google Cloud region for the service to reside in
