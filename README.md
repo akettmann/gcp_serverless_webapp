@@ -6,6 +6,7 @@ This is a terraform module to simply and quickly deploy a Docker container to Go
 
 
 <!-- BEGIN_TF_DOCS -->
+
 ## Setup
 To use this module you will need
 * Terraform
